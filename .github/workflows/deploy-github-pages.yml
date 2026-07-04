@@ -39,7 +39,7 @@ jobs:
       - name: Deploy to rachelwanggg.github.io
         uses: peaceiris/actions-gh-pages@v4
         with:
-          personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          personal_token: ${{ secrets.RACHELWANGGG_GITHUB_IO }}
           external_repository: RachelWanggg/rachelwanggg.github.io
           publish_branch: main
           publish_dir: ./dist
