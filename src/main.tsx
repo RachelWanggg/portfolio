@@ -12,7 +12,7 @@ import {
 import { PixelWorld } from "./pixel-world";
 import "./styles.css";
 
-type PanelId = "projects" | "resume" | "opensource" | "about" | "contact";
+type PanelId = "projects" | "resume" | "about" | "contact";
 
 const panels: Record<
   PanelId,
@@ -29,19 +29,33 @@ const panels: Record<
   projects: {
     year: "01",
     title: "Projects",
-    kicker: "Published AI products",
-    copy:
-      "Two shipped products are live: a pet health record system and a Chrome extension for navigating long AI conversations.",
+    kicker: "Shipped products & merged open source",
+    copy: "Two live products, plus bug fixes merged upstream into widely used AI and document-processing projects.",
     bullets: [
       "Pet Health App organizes pet medical records into a clear health timeline and helps owners understand their pet's health history.",
       "AI Chat Timeline adds timeline navigation, smart pinning, prompt library, and revision tools to ChatGPT and Claude.",
+      "Promptfoo #10937: Langfuse settings from --env-file and config-level env are now honored.",
+      "Microsoft Agent Framework #8490: switch-case condition errors surface instead of silently routing to the default branch.",
+      "Docling #4313: backslash-escaped pipes in Markdown tables no longer split cells.",
     ],
-    tags: ["Multi-agent", "Chrome Extension", "Published"],
+    tags: ["Published", "Chrome Extension", "Open Source", "Merged"],
     links: [
       { label: "Pet Health App", href: "https://pet-agent.vercel.app/" },
       {
         label: "AI Chat Timeline",
         href: "https://chromewebstore.google.com/detail/ai-chat-timeline/ekjdciljnpfpolompiflnlglkooabpbg",
+      },
+      {
+        label: "Promptfoo #10937",
+        href: "https://github.com/promptfoo/promptfoo/pull/10937",
+      },
+      {
+        label: "Agent Framework #8490",
+        href: "https://github.com/microsoft/agent-framework/pull/8490",
+      },
+      {
+        label: "Docling #4313",
+        href: "https://github.com/docling-project/docling/pull/4313",
       },
     ],
   },
@@ -49,8 +63,7 @@ const panels: Record<
     year: "02",
     title: "Resume",
     kicker: "Gen AI Software Engineer | Agents & RAG",
-    copy:
-      "Early career software engineer building multi-agent orchestration systems and RAG pipelines end to end in Python and TypeScript. MS in Computer Science at Santa Clara University.",
+    copy: "Early career software engineer building multi-agent orchestration systems and RAG pipelines end to end in Python and TypeScript. MS in Computer Science at Santa Clara University.",
     bullets: [
       "Marketeq (Jun 2026 - Present), Gen AI SDE Intern: LangGraph + MCP multi-agent content pipeline with checkpoint crash recovery (-41% reprocessing time) and grounding guardrails (-57% factual corrections); Terraform + GitHub Actions on AWS, serving 30+ weekly content requests.",
       "EastSolve (Dec 2025 - May 2026), Gen AI SDE Intern: pet health record app in Next.js + FastAPI; RAG over FDA/CDC data with pgvector, Neo4j and hybrid search + cross-encoder reranking, lifting top-5 precision from 71% to 89% and cutting hallucinated responses by 34%.",
@@ -60,45 +73,26 @@ const panels: Record<
       "Education: MS Computer Science, Santa Clara University (2024 - 2026); BS Mathematics, University of British Columbia (2019 - 2023).",
     ],
     tags: ["Python", "TypeScript", "LangGraph", "MCP", "RAG", "AWS"],
-    links: [
-      { label: "Download PDF", href: "/Ruiqi_Wang_resume.pdf" },
-    ],
-  },
-  opensource: {
-    year: "03",
-    title: "Open Source",
-    kicker: "Merged upstream contributions",
-    copy:
-      "Bug fixes merged into widely used AI and document-processing projects, each with regression tests.",
-    bullets: [
-      "Promptfoo: read Langfuse credentials and host at fetch time so --env-file and config-level env settings are honored (PR #10937).",
-      "Microsoft Agent Framework: surface switch-case condition errors instead of silently routing to the default branch (PR #8490).",
-      "Docling: honor backslash-escaped pipes in Markdown tables instead of splitting cells (PR #4313).",
-    ],
-    tags: ["Promptfoo", "Agent Framework", "Docling", "Merged"],
-    links: [
-      { label: "Promptfoo #10937", href: "https://github.com/promptfoo/promptfoo/pull/10937" },
-      { label: "Agent Framework #8490", href: "https://github.com/microsoft/agent-framework/pull/8490" },
-      { label: "Docling #4313", href: "https://github.com/docling-project/docling/pull/4313" },
-    ],
+    links: [{ label: "Download PDF", href: "/Ruiqi_Wang_resume.pdf" }],
   },
   about: {
-    year: "04",
+    year: "03",
     title: "About Rachel",
     kicker: "AI engineer building agentic systems",
-    copy:
-      "Early career software engineer with hands-on experience building multi-agent orchestration systems and retrieval-augmented generation pipelines in Python and TypeScript, from framing ambiguous asks with users to shipped APIs, agent tooling, and cloud deployments.",
+    copy: "Early career software engineer with hands-on experience building multi-agent orchestration systems and retrieval-augmented generation pipelines in Python and TypeScript, from framing ambiguous asks with users to shipped APIs, agent tooling, and cloud deployments.",
     tags: ["LangGraph", "MCP", "RAG", "Next.js", "AWS"],
   },
   contact: {
-    year: "05",
+    year: "04",
     title: "Contact",
     kicker: "Open for AI engineering roles",
-    copy:
-      "I am especially interested in AI product engineering, agent architecture, full-stack AI tools, and products where technical depth meets playful UX.",
+    copy: "I am especially interested in AI product engineering, agent architecture, full-stack AI tools, and products where technical depth meets playful UX.",
     tags: ["AI Engineer", "Full-stack", "Santa Clara"],
     links: [
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/ruiqi-wang-rach01" },
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/ruiqi-wang-rach01",
+      },
       { label: "GitHub", href: "https://github.com/RachelWanggg" },
     ],
   },
@@ -109,16 +103,14 @@ const projects = [
     title: "Pet Health App",
     href: "https://pet-agent.vercel.app/",
     meta: "Pet health record app",
-    copy:
-      "Organizes pet medical records into a clear health timeline and helps owners understand their pet's health history and get answers to health questions.",
+    copy: "Organizes pet medical records into a clear health timeline and helps owners understand their pet's health history and get answers to health questions.",
     tags: ["Agents", "Medical records", "Vercel"],
   },
   {
     title: "AI Chat Timeline",
     href: "https://chromewebstore.google.com/detail/ai-chat-timeline/ekjdciljnpfpolompiflnlglkooabpbg",
     meta: "Published Chrome extension",
-    copy:
-      "Adds timeline navigation, smart pinning, prompt library, and optional prompt revision for long ChatGPT and Claude conversations.",
+    copy: "Adds timeline navigation, smart pinning, prompt library, and optional prompt revision for long ChatGPT and Claude conversations.",
     tags: ["Chrome Web Store", "5.0 rating", "19 users"],
   },
 ];
@@ -145,7 +137,11 @@ const contributions = [
 ];
 
 const socialLinks = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/ruiqi-wang-rach01", icon: "in" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/ruiqi-wang-rach01",
+    icon: "in",
+  },
   { label: "GitHub", href: "https://github.com/RachelWanggg", icon: "github" },
   { label: "Email", href: "mailto:rachelwangrq2@gmail.com", icon: "mail" },
 ];
@@ -184,63 +180,80 @@ function App() {
 
       <section className="hero" id="home">
         <div className="hero-copy">
-          <div className="intro-top">
+          <div className="hero-main">
             <p className="eyebrow">
               <Gamepad2 size={17} /> AI engineer portfolio
             </p>
+            <h1>Rachel Wang</h1>
+            <p className="hero-summary">
+              I build multi-agent systems, RAG pipelines, and full-stack AI
+              tools that turn ambiguous asks into shipped, production-ready
+              systems.
+            </p>
+            <div className="skill-block" aria-label="Core skills">
+              <span className="skill-label">Core stack</span>
+              <ul>
+                {coreSkills.map((skill) => (
+                  <li key={skill}>{skill}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="hero-side">
             <div className="hero-sticker">
               <img
                 alt="Retro pixel sticker portrait of Rachel Wang"
                 src="/ruiqi-pixel-sticker.png"
               />
             </div>
-          </div>
-          <h1>Rachel Wang</h1>
-          <p className="hero-summary">
-            I build multi-agent systems, RAG pipelines, and full-stack AI tools
-            that turn ambiguous asks into shipped, production-ready systems.
-          </p>
-          <div className="skill-block" aria-label="Core skills">
-            <span className="skill-label">Core stack</span>
-            <ul>
-              {coreSkills.map((skill) => (
-                <li key={skill}>{skill}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="cta-row">
-            <a className="cta-primary" href="/Ruiqi_Wang_resume.pdf" rel="noreferrer" target="_blank">
-              <FileText size={17} /> Resume PDF
-            </a>
-            <button className="cta-secondary" onClick={() => setActivePanel("contact")} type="button">
-              <Mail size={17} /> Contact
-            </button>
-          </div>
-          <div className="social-row" aria-label="Profile links">
-            {socialLinks.map(({ href, icon: Icon, label }) => (
+            <div className="cta-row">
               <a
-                aria-label={label}
-                href={href}
-                key={href}
+                className="cta-primary"
+                href="/Ruiqi_Wang_resume.pdf"
                 rel="noreferrer"
                 target="_blank"
-                title={label}
               >
-                <SocialIcon icon={Icon} />
+                <FileText size={17} /> Resume PDF
               </a>
-            ))}
+              <button
+                className="cta-secondary"
+                onClick={() => setActivePanel("contact")}
+                type="button"
+              >
+                <Mail size={17} /> Contact
+              </button>
+            </div>
+            <div className="social-row" aria-label="Profile links">
+              {socialLinks.map(({ href, icon: Icon, label }) => (
+                <a
+                  aria-label={label}
+                  href={href}
+                  key={href}
+                  rel="noreferrer"
+                  target="_blank"
+                  title={label}
+                >
+                  <SocialIcon icon={Icon} />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
         <div className="game-frame" aria-label="Playable pixel portfolio map">
           <PixelWorld onOpenPanel={(id) => setActivePanel(id)} />
           <p className="map-hint">
-            <Gamepad2 size={15} /> Walk with arrow keys / WASD, or click a sign
+            <Gamepad2 size={15} />
+            <span className="hint-desktop">Walk with arrow keys / WASD, or click a sign</span>
+            <span className="hint-touch">Tap a sign to explore</span>
           </p>
         </div>
       </section>
 
-      <section className="content-section showcase" aria-label="Projects and open source">
+      <section
+        className="content-section showcase"
+        aria-label="Projects and open source"
+      >
         <article className="showcase-card">
           <h2 className="section-title">Projects</h2>
           <ul className="showcase-list">
@@ -310,7 +323,12 @@ function App() {
             {panel.links ? (
               <div className="modal-links">
                 {panel.links.map((link) => (
-                  <a href={link.href} key={link.href} rel="noreferrer" target="_blank">
+                  <a
+                    href={link.href}
+                    key={link.href}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
                     <ArrowUpRight size={16} /> {link.label}
                   </a>
                 ))}

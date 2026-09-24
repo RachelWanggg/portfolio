@@ -116,7 +116,7 @@ button {
 
 .hero {
   display: grid;
-  grid-template-columns: 320px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 18px;
   align-items: start;
   width: min(1180px, 100%);
@@ -759,4 +759,96 @@ h1 {
 
 .app-shell {
   padding-bottom: 48px;
+}
+
+/* hero: one wide card, main copy left, actions right */
+.hero-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  padding: 24px 28px;
+}
+
+.hero-main .eyebrow {
+  margin-bottom: 14px;
+}
+
+.hero-main h1 {
+  max-width: none;
+}
+
+.hero-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero-side .hero-sticker {
+  flex: none;
+  width: 116px;
+}
+
+.hero-side .cta-row {
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: 0;
+}
+
+.hero-side .cta-row > * {
+  justify-content: center;
+}
+
+.hero-side .social-row {
+  margin-top: 0;
+}
+
+@media (max-width: 760px) {
+  .hero-copy {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .hero-side {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .hero-copy {
+    position: relative;
+  }
+
+  .hero-side .hero-sticker {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 72px;
+  }
+
+  .hero-side .cta-row {
+    flex-direction: row;
+  }
+}
+
+.hint-touch {
+  display: none;
+}
+
+@media (hover: none) {
+  .hint-desktop {
+    display: none;
+  }
+
+  .hint-touch {
+    display: inline;
+  }
+}
+
+@media (max-width: 760px) {
+  .showcase {
+    grid-template-columns: 1fr;
+  }
 }
