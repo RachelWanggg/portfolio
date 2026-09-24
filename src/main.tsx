@@ -123,10 +123,25 @@ const projects = [
   },
 ];
 
-const quickLinks: Array<{ id: PanelId; title: string; copy: string }> = [
-  { id: "resume", title: "Resume", copy: "Marketeq, EastSolve, eKutir" },
-  { id: "opensource", title: "Open Source", copy: "Promptfoo, Agent Framework, Docling" },
-  { id: "contact", title: "Contact", copy: "LinkedIn, GitHub, email" },
+const contributions = [
+  {
+    repo: "Promptfoo",
+    pr: 10937,
+    href: "https://github.com/promptfoo/promptfoo/pull/10937",
+    copy: "Langfuse settings from --env-file and config env are now honored.",
+  },
+  {
+    repo: "Microsoft Agent Framework",
+    pr: 8490,
+    href: "https://github.com/microsoft/agent-framework/pull/8490",
+    copy: "Switch-case errors surface instead of silently routing to default.",
+  },
+  {
+    repo: "Docling",
+    pr: 4313,
+    href: "https://github.com/docling-project/docling/pull/4313",
+    copy: "Escaped pipes in Markdown tables no longer split cells.",
+  },
 ];
 
 const socialLinks = [
@@ -225,43 +240,39 @@ function App() {
         </div>
       </section>
 
-      <section className="content-section" aria-labelledby="projects-heading">
-        <h2 className="section-title" id="projects-heading">
-          Featured projects
-        </h2>
-        <div className="project-grid">
-          {projects.map((project, index) => (
-            <article className="shelf-card project-card" key={project.href}>
-              <div className="card-year">0{index + 1}</div>
-              <h3>{project.title}</h3>
-              <p className="project-meta">{project.meta}</p>
-              <p>{project.copy}</p>
-              <a href={project.href} rel="noreferrer" target="_blank">
-                <ArrowUpRight size={16} /> Visit
-              </a>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="content-section" aria-labelledby="more-heading">
-        <h2 className="section-title" id="more-heading">
-          More about me
-        </h2>
-        <div className="quick-links">
-          {quickLinks.map((item) => (
-            <button
-              className="quick-card"
-              key={item.id}
-              onClick={() => setActivePanel(item.id)}
-              type="button"
-            >
-              <span className="quick-title">{item.title}</span>
-              <span className="quick-copy">{item.copy}</span>
-              <ArrowUpRight size={18} />
-            </button>
-          ))}
-        </div>
+      <section className="content-section showcase" aria-label="Projects and open source">
+        <article className="showcase-card">
+          <h2 className="section-title">Projects</h2>
+          <ul className="showcase-list">
+            {projects.map((project) => (
+              <li key={project.href}>
+                <a href={project.href} rel="noreferrer" target="_blank">
+                  <span className="item-title">
+                    {project.title} <ArrowUpRight size={16} />
+                  </span>
+                  <span className="item-meta">{project.meta}</span>
+                  <span className="item-copy">{project.copy}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </article>
+        <article className="showcase-card showcase-card--pink">
+          <h2 className="section-title">Open Source</h2>
+          <ul className="showcase-list">
+            {contributions.map((item) => (
+              <li key={item.href}>
+                <a href={item.href} rel="noreferrer" target="_blank">
+                  <span className="item-title">
+                    {item.repo} <span className="item-pr">#{item.pr}</span>{" "}
+                    <ArrowUpRight size={16} />
+                  </span>
+                  <span className="item-copy">{item.copy}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </article>
       </section>
 
       {panel ? (

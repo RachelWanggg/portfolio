@@ -567,6 +567,10 @@ h1 {
   h1 {
     max-width: none;
   }
+
+  .showcase {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 560px) {
@@ -598,7 +602,7 @@ h1 {
   }
 
   .project-grid,
-  .quick-links {
+  .showcase {
     grid-template-columns: 1fr;
   }
 
@@ -681,47 +685,76 @@ h1 {
   letter-spacing: 0;
 }
 
-.quick-links {
+.showcase {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
 }
 
-.quick-card {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 2px 12px;
-  padding: 14px 18px;
+.showcase-card {
+  padding: 20px 22px;
   border: var(--outline);
   border-radius: 8px;
   background: var(--cream-light);
+  box-shadow: 6px 6px 0 var(--navy);
+}
+
+.showcase-card--pink {
+  box-shadow: 6px 6px 0 var(--pink);
+}
+
+.showcase-list {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.showcase-list a {
+  display: grid;
+  gap: 3px;
+  padding: 12px 14px;
+  border: 2px solid var(--navy);
+  border-radius: 8px;
+  background: var(--cream);
   color: var(--navy);
-  text-align: left;
-  box-shadow: 5px 5px 0 var(--navy);
+  text-decoration: none;
   transition: transform 120ms ease-out, box-shadow 120ms ease-out;
 }
 
-.quick-card:hover {
-  background: var(--blue);
-  transform: translate(2px, 2px);
+.showcase-list a:hover {
+  transform: translate(-2px, -2px);
   box-shadow: 3px 3px 0 var(--navy);
 }
 
-.quick-title {
+.item-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: "Arial Black", Arial, sans-serif;
-  font-size: 18px;
+  font-size: 16px;
 }
 
-.quick-copy {
-  grid-column: 1;
+.item-pr {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: #6b3a55;
+}
+
+.item-meta {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.item-copy {
   font-size: 13px;
   font-weight: 600;
-}
-
-.quick-card svg {
-  grid-column: 2;
-  grid-row: 1 / span 2;
+  line-height: 1.35;
 }
 
 .app-shell {
