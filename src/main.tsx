@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import {
   ArrowUpRight,
+  FileText,
   Gamepad2,
   Mail,
   MapPin,
@@ -122,6 +123,12 @@ const projects = [
   },
 ];
 
+const quickLinks: Array<{ id: PanelId; title: string; copy: string }> = [
+  { id: "resume", title: "Resume", copy: "Marketeq, EastSolve, eKutir" },
+  { id: "opensource", title: "Open Source", copy: "Promptfoo, Agent Framework, Docling" },
+  { id: "contact", title: "Contact", copy: "LinkedIn, GitHub, email" },
+];
+
 const socialLinks = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/ruiqi-wang-rach01", icon: "in" },
   { label: "GitHub", href: "https://github.com/RachelWanggg", icon: "github" },
@@ -186,6 +193,14 @@ function App() {
               ))}
             </ul>
           </div>
+          <div className="cta-row">
+            <a className="cta-primary" href="/Ruiqi_Wang_resume.pdf" rel="noreferrer" target="_blank">
+              <FileText size={17} /> Resume PDF
+            </a>
+            <button className="cta-secondary" onClick={() => setActivePanel("contact")} type="button">
+              <Mail size={17} /> Contact
+            </button>
+          </div>
           <div className="social-row" aria-label="Profile links">
             {socialLinks.map(({ href, icon: Icon, label }) => (
               <a
@@ -204,45 +219,49 @@ function App() {
 
         <div className="game-frame" aria-label="Playable pixel portfolio map">
           <PixelWorld onOpenPanel={(id) => setActivePanel(id)} />
+          <p className="map-hint">
+            <Gamepad2 size={15} /> Walk with arrow keys / WASD, or click a sign
+          </p>
         </div>
       </section>
 
-      <section className="project-grid" aria-label="Portfolio shelves">
-        {projects.map((project, index) => (
-          <article className="shelf-card project-card" key={project.href}>
-            <div className="card-year">0{index + 1}</div>
-            <h2>{project.title}</h2>
-            <p className="project-meta">{project.meta}</p>
-            <p>{project.copy}</p>
-            <a href={project.href} rel="noreferrer" target="_blank">
-              <ArrowUpRight size={16} /> Visit
-            </a>
-          </article>
-        ))}
-        <article className="shelf-card">
-          <div className="card-year">03</div>
-          <h2>Resume</h2>
-          <p>Multi-agent orchestration, RAG pipelines, and data platforms across Marketeq, EastSolve, and eKutir.</p>
-          <button onClick={() => setActivePanel("resume")} type="button">
-            <ArrowUpRight size={16} /> Open
-          </button>
-        </article>
-        <article className="shelf-card">
-          <div className="card-year">04</div>
-          <h2>Open Source</h2>
-          <p>Merged fixes in Promptfoo, Microsoft Agent Framework, and Docling.</p>
-          <button onClick={() => setActivePanel("opensource")} type="button">
-            <ArrowUpRight size={16} /> Open
-          </button>
-        </article>
-        <article className="shelf-card">
-          <div className="card-year">05</div>
-          <h2>Contact</h2>
-          <p>LinkedIn, GitHub, and email for AI engineering opportunities.</p>
-          <button onClick={() => setActivePanel("contact")} type="button">
-            <ArrowUpRight size={16} /> Open
-          </button>
-        </article>
+      <section className="content-section" aria-labelledby="projects-heading">
+        <h2 className="section-title" id="projects-heading">
+          Featured projects
+        </h2>
+        <div className="project-grid">
+          {projects.map((project, index) => (
+            <article className="shelf-card project-card" key={project.href}>
+              <div className="card-year">0{index + 1}</div>
+              <h3>{project.title}</h3>
+              <p className="project-meta">{project.meta}</p>
+              <p>{project.copy}</p>
+              <a href={project.href} rel="noreferrer" target="_blank">
+                <ArrowUpRight size={16} /> Visit
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="content-section" aria-labelledby="more-heading">
+        <h2 className="section-title" id="more-heading">
+          More about me
+        </h2>
+        <div className="quick-links">
+          {quickLinks.map((item) => (
+            <button
+              className="quick-card"
+              key={item.id}
+              onClick={() => setActivePanel(item.id)}
+              type="button"
+            >
+              <span className="quick-title">{item.title}</span>
+              <span className="quick-copy">{item.copy}</span>
+              <ArrowUpRight size={18} />
+            </button>
+          ))}
+        </div>
       </section>
 
       {panel ? (
