@@ -11,7 +11,7 @@ import {
 import { PixelWorld } from "./pixel-world";
 import "./styles.css";
 
-type PanelId = "projects" | "resume" | "about" | "contact";
+type PanelId = "projects" | "resume" | "opensource" | "about" | "contact";
 
 const panels: Record<
   PanelId,
@@ -32,7 +32,7 @@ const panels: Record<
     copy:
       "Two shipped products are live: a pet health record system and a Chrome extension for navigating long AI conversations.",
     bullets: [
-      "Pet Health App extracts unstructured medical records into organized pet health timelines and insights.",
+      "Pet Health App organizes pet medical records into a clear health timeline and helps owners understand their pet's health history.",
       "AI Chat Timeline adds timeline navigation, smart pinning, prompt library, and revision tools to ChatGPT and Claude.",
     ],
     tags: ["Multi-agent", "Chrome Extension", "Published"],
@@ -61,11 +61,28 @@ const panels: Record<
     tags: ["Python", "TypeScript", "LangGraph", "MCP", "RAG", "AWS"],
     links: [
       { label: "Download PDF", href: "/Ruiqi_Wang_resume.pdf" },
-      { label: "Promptfoo PR #10937", href: "https://github.com/promptfoo/promptfoo/pull/10937" },
+    ],
+  },
+  opensource: {
+    year: "03",
+    title: "Open Source",
+    kicker: "Merged upstream contributions",
+    copy:
+      "Bug fixes merged into widely used AI and document-processing projects, each with regression tests.",
+    bullets: [
+      "Promptfoo: read Langfuse credentials and host at fetch time so --env-file and config-level env settings are honored (PR #10937).",
+      "Microsoft Agent Framework: surface switch-case condition errors instead of silently routing to the default branch (PR #8490).",
+      "Docling: honor backslash-escaped pipes in Markdown tables instead of splitting cells (PR #4313).",
+    ],
+    tags: ["Promptfoo", "Agent Framework", "Docling", "Merged"],
+    links: [
+      { label: "Promptfoo #10937", href: "https://github.com/promptfoo/promptfoo/pull/10937" },
+      { label: "Agent Framework #8490", href: "https://github.com/microsoft/agent-framework/pull/8490" },
+      { label: "Docling #4313", href: "https://github.com/docling-project/docling/pull/4313" },
     ],
   },
   about: {
-    year: "03",
+    year: "04",
     title: "About Rachel",
     kicker: "AI engineer building agentic systems",
     copy:
@@ -73,7 +90,7 @@ const panels: Record<
     tags: ["LangGraph", "MCP", "RAG", "Next.js", "AWS"],
   },
   contact: {
-    year: "04",
+    year: "05",
     title: "Contact",
     kicker: "Open for AI engineering roles",
     copy:
@@ -90,9 +107,9 @@ const projects = [
   {
     title: "Pet Health App",
     href: "https://pet-agent.vercel.app/",
-    meta: "RAG-powered health timeline",
+    meta: "Pet health record app",
     copy:
-      "Pet health record app built at EastSolve: Next.js + FastAPI with hybrid-search RAG over FDA and CDC data (top-5 precision 71% to 89%).",
+      "Organizes pet medical records into a clear health timeline and helps owners understand their pet's health history and get answers to health questions.",
     tags: ["Agents", "Medical records", "Vercel"],
   },
   {
@@ -212,6 +229,14 @@ function App() {
         </article>
         <article className="shelf-card">
           <div className="card-year">04</div>
+          <h2>Open Source</h2>
+          <p>Merged fixes in Promptfoo, Microsoft Agent Framework, and Docling.</p>
+          <button onClick={() => setActivePanel("opensource")} type="button">
+            <ArrowUpRight size={16} /> Open
+          </button>
+        </article>
+        <article className="shelf-card">
+          <div className="card-year">05</div>
           <h2>Contact</h2>
           <p>LinkedIn, GitHub, and email for AI engineering opportunities.</p>
           <button onClick={() => setActivePanel("contact")} type="button">
