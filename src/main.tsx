@@ -47,24 +47,30 @@ const panels: Record<
   resume: {
     year: "02",
     title: "Resume",
-    kicker: "AI Engineer | Full-stack builder",
+    kicker: "Gen AI Software Engineer | Agents & RAG",
     copy:
-      "MS in Computer Science at Santa Clara University, with AI engineering experience across agent systems, automation, recommendation, NLP, and full-stack SaaS.",
+      "Early career software engineer building multi-agent orchestration systems and RAG pipelines end to end in Python and TypeScript. MS in Computer Science at Santa Clara University.",
     bullets: [
-      "Marketeq AI Engineer Intern: multi-agent content automation with n8n and LLM agents, driving 30% follower growth and 20+ hrs/week saved.",
-      "SCU MVP Lab AI Engineer: LangGraph + Claude Vision compression QA loop, raising acceptance rate to 96%.",
-      "eKutir Full-stack Engineer Intern: React + Spring Boot agri-contract platform for 10K+ users, with Redis and AWS event-driven notifications.",
-      "Education: MS Computer Science, Santa Clara University; BS Mathematics, University of British Columbia.",
+      "Marketeq (Jun 2026 - Present), Gen AI SDE Intern: LangGraph + MCP multi-agent content pipeline with checkpoint crash recovery (-41% reprocessing time) and grounding guardrails (-57% factual corrections); Terraform + GitHub Actions on AWS, serving 30+ weekly content requests.",
+      "EastSolve (Dec 2025 - May 2026), Gen AI SDE Intern: pet health record app in Next.js + FastAPI; RAG over FDA/CDC data with pgvector, Neo4j and hybrid search + cross-encoder reranking, lifting top-5 precision from 71% to 89% and cutting hallucinated responses by 34%.",
+      "eKutir (Jul 2025 - Nov 2025), Gen AI SDE Intern: contract lifecycle REST APIs and event-driven state machine; ETL pipelines into Postgres processing 5K+ records weekly; retries and audit logging cut failed sync incidents by 45%.",
+      "Open source: merged fix to Promptfoo's Langfuse integration so --env-file and config-level env settings are respected (PR #10937).",
+      "SCU MVP Lab (Apr - Jun 2025): LangGraph + Claude Vision QA pipeline with a feedback loop, raising acceptance rate to 96% without human review.",
+      "Education: MS Computer Science, Santa Clara University (2024 - 2026); BS Mathematics, University of British Columbia (2019 - 2023).",
     ],
-    tags: ["Python", "React", "LangGraph", "AWS"],
+    tags: ["Python", "TypeScript", "LangGraph", "MCP", "RAG", "AWS"],
+    links: [
+      { label: "Download PDF", href: "/Ruiqi_Wang_resume.pdf" },
+      { label: "Promptfoo PR #10937", href: "https://github.com/promptfoo/promptfoo/pull/10937" },
+    ],
   },
   about: {
     year: "03",
     title: "About Rachel",
-    kicker: "AI engineer building agentic products",
+    kicker: "AI engineer building agentic systems",
     copy:
-      "MSCS candidate at Santa Clara University with hands-on work across multi-agent systems, full-stack SaaS, recommendation systems, NLP, and AI workflow automation.",
-    tags: ["LangGraph", "LLM agents", "React", "AWS"],
+      "Early career software engineer with hands-on experience building multi-agent orchestration systems and retrieval-augmented generation pipelines in Python and TypeScript, from framing ambiguous asks with users to shipped APIs, agent tooling, and cloud deployments.",
+    tags: ["LangGraph", "MCP", "RAG", "Next.js", "AWS"],
   },
   contact: {
     year: "04",
@@ -84,9 +90,9 @@ const projects = [
   {
     title: "Pet Health App",
     href: "https://pet-agent.vercel.app/",
-    meta: "Multi-agent health timeline",
+    meta: "RAG-powered health timeline",
     copy:
-      "Extracts unstructured pet medical records into organized timelines and health insights, reducing manual data entry by 90%+.",
+      "Pet health record app built at EastSolve: Next.js + FastAPI with hybrid-search RAG over FDA and CDC data (top-5 precision 71% to 89%).",
     tags: ["Agents", "Medical records", "Vercel"],
   },
   {
@@ -106,11 +112,11 @@ const socialLinks = [
 ];
 
 const coreSkills = [
-  "product strategy",
-  "multi-agent systems",
+  "LangGraph + MCP",
+  "multi-agent orchestration",
+  "RAG pipelines",
   "full-stack AI",
-  "published products",
-  "playful UX",
+  "AWS + Terraform",
 ];
 
 function App() {
@@ -152,8 +158,8 @@ function App() {
           </div>
           <h1>Rachel Wang</h1>
           <p className="hero-summary">
-            I build agentic AI products, full-stack tools, and playful interfaces
-            that turn complex workflows into usable systems.
+            I build multi-agent systems, RAG pipelines, and full-stack AI tools
+            that turn ambiguous asks into shipped, production-ready systems.
           </p>
           <div className="skill-block" aria-label="Core skills">
             <span className="skill-label">Core stack</span>
@@ -199,7 +205,7 @@ function App() {
         <article className="shelf-card">
           <div className="card-year">03</div>
           <h2>Resume</h2>
-          <p>Experience across agent workflows, full-stack SaaS, NLP, and recommendations.</p>
+          <p>Multi-agent orchestration, RAG pipelines, and data platforms across Marketeq, EastSolve, and eKutir.</p>
           <button onClick={() => setActivePanel("resume")} type="button">
             <ArrowUpRight size={16} /> Open
           </button>
