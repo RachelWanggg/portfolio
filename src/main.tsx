@@ -31,14 +31,15 @@ const panels: Record<
     year: "01",
     title: "Projects",
     kicker: "Shipped products & merged open source",
-    copy: "Two live products, plus 9 bug fixes merged upstream into Microsoft Agent Framework, Docling, Promptfoo and Temporal.",
+    copy: "Two live products, plus 11 bug fixes merged upstream into Microsoft Agent Framework, Docling, Promptfoo, Temporal and Kubernetes Agent Sandbox.",
     bullets: [
       "Pet Health App organizes pet medical records into a clear health timeline and helps owners understand their pet's health history.",
       "AI Chat Timeline adds timeline navigation, smart pinning, prompt library, and revision tools to ChatGPT and Claude.",
       "Microsoft Agent Framework (3 merged): fan-out targets deduplicated in .NET and Python; switch-case errors surface instead of routing to default.",
       "Docling (3 merged): pipes inside Markdown and AsciiDoc table cells no longer split cells.",
       "Promptfoo (2 merged): --env-file and config env honored by the Langfuse integration, prompt separator and assertion concurrency.",
-      "Temporal Python SDK (1 merged): cancelling a local activity during retry backoff now takes effect.",
+      "Temporal Python SDK (2 merged): cancellation now works for local activities in retry backoff and for tasks awaiting an external workflow cancel.",
+      "Kubernetes Agent Sandbox (1 merged): Python SDK sync kubectl tunnels no longer stall on unread stdout.",
     ],
     tags: ["Published", "Chrome Extension", "Open Source", "Merged"],
     links: [
@@ -60,8 +61,12 @@ const panels: Record<
         href: "https://github.com/promptfoo/promptfoo/pulls?q=is%3Apr+author%3ARachelWanggg",
       },
       {
-        label: "Temporal #1972",
-        href: "https://github.com/temporalio/sdk-python/pull/1972",
+        label: "Temporal PRs",
+        href: "https://github.com/temporalio/sdk-python/pulls?q=is%3Apr+author%3ARachelWanggg",
+      },
+      {
+        label: "Agent Sandbox #1950",
+        href: "https://github.com/kubernetes-sigs/agent-sandbox/pull/1950",
       },
     ],
   },
@@ -74,7 +79,7 @@ const panels: Record<
       "Marketeq (Jun 2026 - Present), Gen AI SDE Intern: LangGraph + MCP multi-agent content pipeline with checkpoint crash recovery (-41% reprocessing time) and grounding guardrails (-57% factual corrections); Terraform + GitHub Actions on AWS, serving 30+ weekly content requests.",
       "EastSolve (Dec 2025 - May 2026), Gen AI SDE Intern: pet health record app in Next.js + FastAPI; RAG over FDA/CDC data with pgvector, Neo4j and hybrid search + cross-encoder reranking, lifting top-5 precision from 71% to 89% and cutting hallucinated responses by 34%.",
       "eKutir (Jul 2025 - Nov 2025), Gen AI SDE Intern: contract lifecycle REST APIs and event-driven state machine; ETL pipelines into Postgres processing 5K+ records weekly; retries and audit logging cut failed sync incidents by 45%.",
-      "Open source: 9 merged PRs across Microsoft Agent Framework, Docling, Promptfoo and the Temporal Python SDK.",
+      "Open source: 11 merged PRs across Microsoft Agent Framework, Docling, Promptfoo, the Temporal Python SDK and Kubernetes Agent Sandbox.",
       "SCU MVP Lab (Apr - Jun 2025): LangGraph + Claude Vision QA pipeline with a feedback loop, raising acceptance rate to 96% without human review.",
       "Education: MS Computer Science, Santa Clara University (2024 - 2026); BS Mathematics, University of British Columbia (2019 - 2023).",
     ],
@@ -181,8 +186,23 @@ const contributions = [
     stars: 1224,
     prs: [
       {
+        pr: 1975,
+        copy: "Cancelling the task that awaits an external workflow cancel now works.",
+      },
+      {
         pr: 1972,
         copy: "Cancelling a local activity during its retry backoff now takes effect.",
+      },
+    ],
+  },
+  {
+    repo: "Kubernetes Agent Sandbox",
+    slug: "kubernetes-sigs/agent-sandbox",
+    stars: 4279,
+    prs: [
+      {
+        pr: 1950,
+        copy: "Python SDK: sync kubectl tunnels no longer stall on unread stdout.",
       },
     ],
   },
@@ -207,7 +227,11 @@ const formatStars = new Intl.NumberFormat("en", {
 function readCachedStars(): Record<string, number> | null {
   try {
     const cached = JSON.parse(localStorage.getItem(STARS_KEY) ?? "null");
-    if (cached && Date.now() - cached.savedAt < STARS_TTL) {
+    if (
+      cached &&
+      Date.now() - cached.savedAt < STARS_TTL &&
+      contributions.every(({ slug }) => slug in cached.stars)
+    ) {
       return cached.stars;
     }
   } catch {
