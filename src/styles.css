@@ -687,9 +687,11 @@ h1 {
 
 .showcase {
   display: grid;
+  gap: 22px;
+}
+
+.showcase-card > .showcase-list {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-  align-items: start;
 }
 
 .showcase-card {
@@ -847,8 +849,135 @@ h1 {
   }
 }
 
+/* open source: grouped by repo, full width */
+.oss-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-bottom: 14px;
+}
+
+.oss-head .section-title {
+  margin: 0;
+}
+
+.oss-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.oss-stats li {
+  padding: 4px 10px;
+  border: 2px solid var(--navy);
+  border-radius: 999px;
+  background: var(--white);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.oss-stats strong {
+  font-family: "Arial Black", Arial, sans-serif;
+  color: var(--pink);
+}
+
+.oss-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.oss-repo {
+  padding: 12px 14px;
+  border: 2px solid var(--navy);
+  border-radius: 8px;
+  background: var(--cream);
+}
+
+.oss-repo-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 10px;
+  margin-bottom: 8px;
+}
+
+.oss-stars-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border: 2px solid var(--navy);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.oss-stars-badge svg {
+  color: var(--pink);
+  fill: currentColor;
+}
+
+.oss-stars-badge:hover {
+  box-shadow: 2px 2px 0 var(--navy);
+}
+
+.oss-repo-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--navy);
+  font-family: "Arial Black", Arial, sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.oss-repo-name:hover {
+  text-decoration: underline;
+}
+
+.oss-prs {
+  display: grid;
+  gap: 4px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.oss-prs a {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 8px;
+  align-items: baseline;
+  padding: 5px 8px;
+  border-radius: 6px;
+  color: var(--navy);
+  text-decoration: none;
+}
+
+.oss-prs a:hover {
+  background: var(--white);
+}
+
 @media (max-width: 760px) {
-  .showcase {
+  .showcase-card > .showcase-list,
+  .oss-grid {
     grid-template-columns: 1fr;
+  }
+
+  .showcase-card {
+    padding: 16px;
   }
 }

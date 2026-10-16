@@ -7,6 +7,7 @@ import {
   Mail,
   MapPin,
   Sparkles,
+  Star,
   X,
 } from "lucide-react";
 import { PixelWorld } from "./pixel-world";
@@ -30,13 +31,14 @@ const panels: Record<
     year: "01",
     title: "Projects",
     kicker: "Shipped products & merged open source",
-    copy: "Two live products, plus bug fixes merged upstream into widely used AI and document-processing projects.",
+    copy: "Two live products, plus 9 bug fixes merged upstream into Microsoft Agent Framework, Docling, Promptfoo and Temporal.",
     bullets: [
       "Pet Health App organizes pet medical records into a clear health timeline and helps owners understand their pet's health history.",
       "AI Chat Timeline adds timeline navigation, smart pinning, prompt library, and revision tools to ChatGPT and Claude.",
-      "Promptfoo #10937: Langfuse settings from --env-file and config-level env are now honored.",
-      "Microsoft Agent Framework #8490: switch-case condition errors surface instead of silently routing to the default branch.",
-      "Docling #4313: backslash-escaped pipes in Markdown tables no longer split cells.",
+      "Microsoft Agent Framework (3 merged): fan-out targets deduplicated in .NET and Python; switch-case errors surface instead of routing to default.",
+      "Docling (3 merged): pipes inside Markdown and AsciiDoc table cells no longer split cells.",
+      "Promptfoo (2 merged): --env-file and config env honored by the Langfuse integration, prompt separator and assertion concurrency.",
+      "Temporal Python SDK (1 merged): cancelling a local activity during retry backoff now takes effect.",
     ],
     tags: ["Published", "Chrome Extension", "Open Source", "Merged"],
     links: [
@@ -46,16 +48,20 @@ const panels: Record<
         href: "https://chromewebstore.google.com/detail/ai-chat-timeline/ekjdciljnpfpolompiflnlglkooabpbg",
       },
       {
-        label: "Promptfoo #10937",
-        href: "https://github.com/promptfoo/promptfoo/pull/10937",
+        label: "Agent Framework PRs",
+        href: "https://github.com/microsoft/agent-framework/pulls?q=is%3Apr+author%3ARachelWanggg",
       },
       {
-        label: "Agent Framework #8490",
-        href: "https://github.com/microsoft/agent-framework/pull/8490",
+        label: "Docling PRs",
+        href: "https://github.com/docling-project/docling/pulls?q=is%3Apr+author%3ARachelWanggg",
       },
       {
-        label: "Docling #4313",
-        href: "https://github.com/docling-project/docling/pull/4313",
+        label: "Promptfoo PRs",
+        href: "https://github.com/promptfoo/promptfoo/pulls?q=is%3Apr+author%3ARachelWanggg",
+      },
+      {
+        label: "Temporal #1972",
+        href: "https://github.com/temporalio/sdk-python/pull/1972",
       },
     ],
   },
@@ -68,7 +74,7 @@ const panels: Record<
       "Marketeq (Jun 2026 - Present), Gen AI SDE Intern: LangGraph + MCP multi-agent content pipeline with checkpoint crash recovery (-41% reprocessing time) and grounding guardrails (-57% factual corrections); Terraform + GitHub Actions on AWS, serving 30+ weekly content requests.",
       "EastSolve (Dec 2025 - May 2026), Gen AI SDE Intern: pet health record app in Next.js + FastAPI; RAG over FDA/CDC data with pgvector, Neo4j and hybrid search + cross-encoder reranking, lifting top-5 precision from 71% to 89% and cutting hallucinated responses by 34%.",
       "eKutir (Jul 2025 - Nov 2025), Gen AI SDE Intern: contract lifecycle REST APIs and event-driven state machine; ETL pipelines into Postgres processing 5K+ records weekly; retries and audit logging cut failed sync incidents by 45%.",
-      "Open source: merged fix to Promptfoo's Langfuse integration so --env-file and config-level env settings are respected (PR #10937).",
+      "Open source: 9 merged PRs across Microsoft Agent Framework, Docling, Promptfoo and the Temporal Python SDK.",
       "SCU MVP Lab (Apr - Jun 2025): LangGraph + Claude Vision QA pipeline with a feedback loop, raising acceptance rate to 96% without human review.",
       "Education: MS Computer Science, Santa Clara University (2024 - 2026); BS Mathematics, University of British Columbia (2019 - 2023).",
     ],
@@ -117,24 +123,139 @@ const projects = [
 
 const contributions = [
   {
-    repo: "Promptfoo",
-    pr: 10937,
-    href: "https://github.com/promptfoo/promptfoo/pull/10937",
-    copy: "Langfuse settings from --env-file and config env are now honored.",
-  },
-  {
     repo: "Microsoft Agent Framework",
-    pr: 8490,
-    href: "https://github.com/microsoft/agent-framework/pull/8490",
-    copy: "Switch-case errors surface instead of silently routing to default.",
+    slug: "microsoft/agent-framework",
+    stars: 14164,
+    prs: [
+      {
+        pr: 9432,
+        copy: ".NET: fan-out targets are deduplicated so each one runs once.",
+      },
+      {
+        pr: 8739,
+        copy: "Python: fan-out selection results no longer run a target twice.",
+      },
+      {
+        pr: 8490,
+        copy: "Switch-case errors surface instead of silently routing to default.",
+      },
+    ],
   },
   {
     repo: "Docling",
-    pr: 4313,
-    href: "https://github.com/docling-project/docling/pull/4313",
-    copy: "Escaped pipes in Markdown tables no longer split cells.",
+    slug: "docling-project/docling",
+    stars: 68986,
+    prs: [
+      {
+        pr: 4378,
+        copy: "AsciiDoc: backslash-escaped pipes stay inside their table cell.",
+      },
+      {
+        pr: 4371,
+        copy: "Markdown: every character-reference spelling of a pipe stays in its cell.",
+      },
+      {
+        pr: 4313,
+        copy: "Markdown: backslash-escaped pipes no longer split table cells.",
+      },
+    ],
+  },
+  {
+    repo: "Promptfoo",
+    slug: "promptfoo/promptfoo",
+    stars: 26060,
+    prs: [
+      {
+        pr: 11059,
+        copy: "--env-file and config env now apply to prompt separator and assertion concurrency.",
+      },
+      {
+        pr: 10937,
+        copy: "Langfuse settings are read at fetch time, so --env-file and config env work.",
+      },
+    ],
+  },
+  {
+    repo: "Temporal Python SDK",
+    slug: "temporalio/sdk-python",
+    stars: 1224,
+    prs: [
+      {
+        pr: 1972,
+        copy: "Cancelling a local activity during its retry backoff now takes effect.",
+      },
+    ],
   },
 ];
+
+const mergedCount = contributions.reduce((sum, item) => sum + item.prs.length, 0);
+const authorPrs = (slug: string) =>
+  `https://github.com/${slug}/pulls?q=is%3Apr+author%3ARachelWanggg`;
+
+// Star counts: render the baked-in fallback, then refresh from the public
+// GitHub API (no token) at most once per 12 hours per browser.
+const STARS_KEY = "oss-stars";
+const STARS_TTL = 12 * 60 * 60 * 1000;
+const fallbackStars = Object.fromEntries(
+  contributions.map((item) => [item.slug, item.stars]),
+);
+const formatStars = new Intl.NumberFormat("en", {
+  notation: "compact",
+  maximumFractionDigits: 1,
+});
+
+function readCachedStars(): Record<string, number> | null {
+  try {
+    const cached = JSON.parse(localStorage.getItem(STARS_KEY) ?? "null");
+    if (cached && Date.now() - cached.savedAt < STARS_TTL) {
+      return cached.stars;
+    }
+  } catch {
+    // storage blocked or corrupted: fall through to a fresh fetch
+  }
+  return null;
+}
+
+function useRepoStars() {
+  const [stars, setStars] = React.useState<Record<string, number>>(
+    () => ({ ...fallbackStars, ...readCachedStars() }),
+  );
+
+  React.useEffect(() => {
+    if (readCachedStars()) return;
+    let cancelled = false;
+
+    Promise.all(
+      contributions.map(async ({ slug }) => {
+        const response = await fetch(`https://api.github.com/repos/${slug}`);
+        if (!response.ok) throw new Error(String(response.status));
+        const repo: { stargazers_count: number } = await response.json();
+        return [slug, repo.stargazers_count] as const;
+      }),
+    )
+      .then((entries) => {
+        const fresh = Object.fromEntries(entries);
+        if (!cancelled) setStars(fresh);
+        try {
+          localStorage.setItem(
+            STARS_KEY,
+            JSON.stringify({ savedAt: Date.now(), stars: fresh }),
+          );
+        } catch {
+          // storage unavailable: next visit just fetches again
+        }
+      })
+      .catch(() => {
+        // rate limited or offline: keep showing the fallback counts
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return stars;
+}
 
 const socialLinks = [
   {
@@ -157,6 +278,7 @@ const coreSkills = [
 function App() {
   const [activePanel, setActivePanel] = React.useState<PanelId | null>(null);
   const panel = activePanel ? panels[activePanel] : null;
+  const stars = useRepoStars();
 
   return (
     <main className="app-shell">
@@ -270,18 +392,55 @@ function App() {
             ))}
           </ul>
         </article>
-        <article className="showcase-card showcase-card--pink">
-          <h2 className="section-title">Open Source</h2>
-          <ul className="showcase-list">
+        <article className="showcase-card showcase-card--pink oss-card">
+          <div className="oss-head">
+            <h2 className="section-title">Open Source</h2>
+            <ul className="oss-stats" aria-label="Open source summary">
+              <li>
+                <strong>{mergedCount}</strong> merged PRs
+              </li>
+              <li>
+                <strong>{contributions.length}</strong> projects
+              </li>
+            </ul>
+          </div>
+          <ul className="oss-grid">
             {contributions.map((item) => (
-              <li key={item.href}>
-                <a href={item.href} rel="noreferrer" target="_blank">
-                  <span className="item-title">
-                    {item.repo} <span className="item-pr">#{item.pr}</span>{" "}
-                    <ArrowUpRight size={16} />
-                  </span>
-                  <span className="item-copy">{item.copy}</span>
-                </a>
+              <li className="oss-repo" key={item.slug}>
+                <div className="oss-repo-head">
+                  <a
+                    className="oss-repo-name"
+                    href={authorPrs(item.slug)}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    {item.repo} <ArrowUpRight size={15} />
+                  </a>
+                  <a
+                    aria-label={`${stars[item.slug]} GitHub stars`}
+                    className="oss-stars-badge"
+                    href={`https://github.com/${item.slug}`}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <Star size={12} />
+                    {formatStars.format(stars[item.slug]).toLowerCase()}
+                  </a>
+                </div>
+                <ul className="oss-prs">
+                  {item.prs.map((pr) => (
+                    <li key={pr.pr}>
+                      <a
+                        href={`https://github.com/${item.slug}/pull/${pr.pr}`}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        <span className="item-pr">#{pr.pr}</span>
+                        <span className="item-copy">{pr.copy}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </li>
             ))}
           </ul>
